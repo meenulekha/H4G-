@@ -90,7 +90,7 @@ export default function MailScreen() {
                             <TouchableOpacity
                                 style={styles.editButton}
                                 onPress={handleAIResponse} >
-                                <Text style={styles.buttonText}>Add Task</Text>
+                                <Text style={styles.buttonText}>Generate Summary</Text>
                             </TouchableOpacity>
                         </View>
                         {aiSummary ? <Text style={styles.aiSummary}>AI Summary: {aiSummary}</Text> : null}
@@ -150,6 +150,7 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: 'bold',
         marginBottom: 16,
+        fontFamily: 'PoppinsN',
     },
     emailItem: {
         marginBottom: 12,
@@ -160,42 +161,51 @@ const styles = StyleSheet.create({
     emailSubject: {
         fontSize: 16,
         fontWeight: 'bold',
+        fontFamily: 'PoppinsN',
     },
     emailSender: {
         fontSize: 14,
         color: '#555',
+        fontFamily: 'PoppinsN',
     },
     emailReceivedAt: {
         fontSize: 12,
         color: '#888',
+        fontFamily: 'PoppinsN',
     },
     emailDetailSubject: {
         fontSize: 20,
         fontWeight: 'bold',
         marginBottom: 8,
+        fontFamily: 'PoppinsN',
     },
     emailDetailSender: {
         fontSize: 16,
         marginBottom: 8,
+        fontFamily: 'PoppinsN',
     },
     emailDetailBody: {
         fontSize: 14,
         marginBottom: 16,
+        fontFamily: 'PoppinsN',
     },
     emailDetailReceivedAt: {
         fontSize: 12,
         color: '#888',
         marginBottom: 16,
+        fontFamily: 'PoppinsN',
     },
     aiSummary: {
         fontSize: 14,
         marginTop: 16,
         fontStyle: 'italic',
+        fontFamily: 'PoppinsN',
     },
     noEmailSelected: {
         fontSize: 16,
         fontStyle: 'italic',
         color: '#888',
+        fontFamily: 'PoppinsN',
     },
     chatSection: {
         marginTop: 20,
