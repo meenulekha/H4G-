@@ -11,6 +11,7 @@ import { Image, Text } from 'react-native';
 
 
 
+
 const locales = { 'en-US': enUS };
 
 const localizer = dateFnsLocalizer({

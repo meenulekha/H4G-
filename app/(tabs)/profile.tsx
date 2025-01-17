@@ -1,9 +1,19 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, Image, TextInput, Button, ScrollView } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  Image,
+  TextInput,
+  TouchableOpacity,
+  ScrollView,
+} from 'react-native';
+import "../../assets/images/sampleprofile.jpg"
 
 export default function AdminProfilePage() {
   const [profile, setProfile] = useState({
-    profilePhoto: 'https://via.placeholder.com/150', // Placeholder profile picture
+    //profilePhoto: 'https://via.placeholder.com/150', // Placeholder profile picture
+    profilePhoto: "../../assets/images/sampleprofile.jpg",
     name: 'Sarah Johnson',
     username: 'sarah.johnson',
     email: 'sarah.johnson@example.com',
@@ -70,8 +80,16 @@ export default function AdminProfilePage() {
 
       {/* Edit and Save Buttons */}
       <View style={styles.buttonContainer}>
-        <Button title="Edit Profile" onPress={() => alert('Edit Profile')} />
-        <Button title="Change Password" onPress={() => alert('Change Password')} />
+        <TouchableOpacity
+          style={styles.editButton}
+          onPress={() => alert('Edit Profile')}>
+          <Text style={styles.buttonText}>Edit Profile</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.editButton}
+          onPress={() => alert('Change Password')}>
+          <Text style={styles.buttonText}>Change Password</Text>
+        </TouchableOpacity>
       </View>
     </ScrollView>
   );
@@ -95,27 +113,44 @@ const styles = StyleSheet.create({
     borderColor: '#ddd', // Light gray border
     backgroundColor: '#f9f9f9', // Fallback background color
   },
-  
   profileDetailsContainer: {
     marginBottom: 20,
   },
   label: {
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: 'bold',
     marginBottom: 5,
+    fontFamily: 'PoppinsN',
   },
   textInput: {
-    fontSize: 16,
+    fontSize: 12,
     padding: 10,
     marginBottom: 15,
     backgroundColor: '#fff',
     borderRadius: 5,
     borderWidth: 1,
     borderColor: '#ddd',
+    fontFamily: 'PoppinsN',
   },
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    gap: 10,
+  },
+  editButton: {
+    backgroundColor: '#D496A7',
+    paddingVertical: 5,
+    paddingHorizontal: 5,
+    borderRadius: 10, // Oval shape
+    alignItems: 'center', // Center text
+    justifyContent: 'center', // Center text
+    flex: 1,
+    marginHorizontal: 10,
+    maxWidth:'50%', // Add spacing between buttons
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 14,
+    fontWeight: 'bold',
+    fontFamily: 'PoppinsN',
   },
 });
