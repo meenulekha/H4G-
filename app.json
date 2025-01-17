@@ -32,6 +32,12 @@
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
         }
+      ],
+      [
+        "expo-calendar",
+        {
+          "calendarPermission": "Allow $(PRODUCT_NAME) to access your calendar."
+        }
       ]
     ],
     "experiments": {

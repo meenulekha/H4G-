@@ -3,6 +3,11 @@ import { StyleSheet } from 'react-native';
 
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
+//import 'web-streams-polyfill/ponyfill';
+import React from 'react';
+import { ReadableStream } from 'web-streams-polyfill';
+
+
 
 export default function NotFoundScreen() {
   return (

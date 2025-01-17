@@ -5,16 +5,30 @@ import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
+//import 'web-streams-polyfill/ponyfill';
+import { ReadableStream } from 'web-streams-polyfill';
+import 'react-native-get-random-values';
+
+import AppLoading from 'expo-app-loading'; // To handle font loading
+
+
+
+
 
 import { useColorScheme } from '@/hooks/useColorScheme';
+
+
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
+
   const [loaded] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
+    PoppinsN: require('../assets/fonts/Poppins/Poppins-Light.ttf'),
+    PoppinsB: require('../assets/fonts/Poppins/Poppins-Bold.ttf')
   });
 
   useEffect(() => {
@@ -26,6 +40,7 @@ export default function RootLayout() {
   if (!loaded) {
     return null;
   }
+
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>

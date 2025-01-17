@@ -1,0 +1,57 @@
+.rbc-event {
+    background-color: #D496A7;
+    /* Light pastel red */
+    border: none;
+    color: #333;
+    font-weight: bold;
+}
+
+.rbc-today {
+    background-color: #c5cfd3;
+    /* Light pastel blue */
+}
+
+.rbc-month-view {
+    background-color: #f3f3f3;
+}
+
+.rbc-toolbar button {
+    background-color: #FE938C;
+    /* Light pastel orange */
+    border-radius: 4px;
+    color: #333;
+    border: none;
+    padding: 4px 8px;
+}
+
+.container {
+    flex: 1;
+    padding: 16;
+    background-color: '#ffffff';
+    align-items: 'center';
+    justify-content: 'center';
+
+
+}
+
+
+
+.calendarContainer {
+    flex: 1;
+    border-Radius: 10;
+    overflow: 'hidden';
+    background-color: '#ffffff';
+    max-width: 600;
+    max-height: 400;
+    padding: 10;
+}
+
+.calendar {
+    border-radius: 10;
+    background-color: '#ffffff';
+    color: '#333';
+    font-family: 'Arial, sans-serif';
+    height: '100%';
+    width: '100%';
+    font-size: 12;
+}

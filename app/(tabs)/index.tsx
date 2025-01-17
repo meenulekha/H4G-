@@ -1,74 +1,150 @@
-import { Image, StyleSheet, Platform } from 'react-native';
+import React, { useState } from 'react';
+import { ScrollView, StyleSheet, View } from 'react-native';
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+import 'react-big-calendar/lib/css/react-big-calendar.css';
+import '../../css/calendarStyles.css';
+import { Calendar, dateFnsLocalizer } from 'react-big-calendar';
+import { parse, getDay, format, startOfWeek } from 'date-fns';
+import { enUS } from 'date-fns/locale';
+import ToDoList from '@/components/ToDoList';
+import { Image, Text } from 'react-native';
+
+
+
+const locales = { 'en-US': enUS };
+
+const localizer = dateFnsLocalizer({
+  format,
+  parse,
+  startOfWeek,
+  getDay,
+  locales,
+});
+
+const logo = require('@/assets/images/logo-bc.png');
 
 export default function HomeScreen() {
+  const [events, setEvents] = useState([
+    {
+      id: '1',
+      title: 'Team Meeting',
+      start: new Date('2025-01-17T10:00:00'),
+      end: new Date('2025-01-17T11:00:00'),
+    },
+    {
+      id: '2',
+      title: 'Project Deadline',
+      start: new Date('2025-01-20T23:59:59'),
+      end: new Date('2025-01-20T23:59:59'),
+    },
+    {
+      id: '3',
+      title: 'Lunch with Sarah',
+      start: new Date('2025-01-18T13:00:00'),
+      end: new Date('2025-01-18T14:00:00'),
+    },
+  ]);
+
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
+
+    <View style={{ flex: 1 }}> {/* Wrap everything in a parent View */}
+    <View style={styles.header}>
+      <View style={styles.headerTextContainer}>
+        <Text style={styles.headerTitle}>Welcome Sarah</Text>
+        <Text style={styles.headerSubtitle}>Your OnePA Dashboard</Text>
+      </View>
+      <Image source={require('@/assets/images/logo-bc.png')} style={styles.logo} />
+    </View>
+    <ScrollView contentContainerStyle={styles.container}>
+      <View style={styles.calendarContainer}>
+        <Calendar
+          localizer={localizer}
+          events={events}
+          startAccessor="start"
+          endAccessor="end"
+          style={styles.calendar}
+          views={['month', 'week', 'day']}
+          popup
         />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12'
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this starter app.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+      </View>
+      <View style={styles.todoContainer}>
+        <ToDoList />
+      </View>
+    </ScrollView>
+  </View>
+
+
+    
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
+  container: {
+    flexDirection: 'row', // Arrange calendar and todo list side by side
+    padding: 16,
+    backgroundColor: '#ffffff',
+    justifyContent: 'space-between', // Add spacing between calendar and todo list
+    alignItems: 'flex-start',
+    // Center the calendar vertically
+  },
+  calendarContainer: {
+    flex: 2, // Give the calendar more space compared to the todo list
+    borderRadius: 10,
+    overflow: 'hidden',
+    backgroundColor: '#ffffff',
+    elevation: 3,
+    maxHeight: '80%',
+    padding: 10,
+    height: 800,
+    fontFamily: 'PoppinsN',
+
+  },
+  calendar: {
+    borderRadius: 10,
+    backgroundColor: '#ffffff',
+    color: '#333',
+    fontFamily: 'Arial, sans-serif',
+    height: '100%', // Set calendar height to fill the container
+    width: '100%', // Set calendar width to fill the container
+    fontSize: 12, // Make text smaller
+    
+  },
+  todoContainer: {
+    flex: 1, // Give the todo list less space compared to the calendar
+    backgroundColor: '#f8f9fa',
+    padding: 10,
+    borderRadius: 10,
+    marginLeft: 16,
+  },
+
+  header: {
+    flexDirection: 'row', // Align logo and text side by side
     alignItems: 'center',
-    gap: 8,
+    backgroundColor: '#ffffff',
+    padding: 16,
+    marginBottom: 16, // Add spacing below the header
+    borderBottomWidth: 1,
+    borderBottomColor: '#ddd',
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+  headerTextContainer: {
+    flex: 1, // Allow the text container to take up space
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  headerTitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#333',
+    fontFamily: 'PoppinsB',
+  },
+  headerSubtitle: {
+    fontSize: 16,
+    color: '#666',
+    fontFamily: 'PoppinsN',
+  },
+  logo: {
+    width: 80, // Adjust size as needed
+    height: 80,
+    resizeMode: 'contain', // Keep aspect ratio
   },
 });
+
+
